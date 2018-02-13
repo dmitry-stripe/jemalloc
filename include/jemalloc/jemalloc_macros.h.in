@@ -103,7 +103,11 @@
 #    define JEMALLOC_FORMAT_PRINTF(s, i)
 #  endif
 #  define JEMALLOC_NOINLINE JEMALLOC_ATTR(noinline)
-#  define JEMALLOC_NOTHROW JEMALLOC_ATTR(nothrow)
+#  if defined(__GLIBC__) 
+#    define JEMALLOC_NOTHROW JEMALLOC_ATTR(nothrow)
+#  else 
+#    define JEMALLOC_NOTHROW 
+#  endif
 #  define JEMALLOC_SECTION(s) JEMALLOC_ATTR(section(s))
 #  define JEMALLOC_RESTRICT_RETURN
 #  define JEMALLOC_ALLOCATOR
